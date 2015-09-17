@@ -1,0 +1,37 @@
+.mkoa-pager{
+    font-size: 0;}
+.mkoa-pager span{
+    font-size: 14px;}
+.mkoa-pager-span{
+    font-size: 14px;
+    background: #fff;
+    display: inline-block;
+    margin: 5px;
+    line-height: 25px;
+    height: 25px;
+    width: 25px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;}
+.mkoa-pager button{
+    height: 29px;
+    font-size: 14px;
+    background: #fff;
+    display: inline-block;
+    margin: 5px;
+    line-height: 25px;
+    color: #666;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ddd;}
+.mkoa-pager button.mkoa-pager-lock{
+    color: #eee;
+    border-color: #eee;cursor: auto;
+}
+.mkoa-pager-curpage{
+    background-color: #666;
+    border-color: #666;
+    color: #fff;}

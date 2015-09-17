@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分页演示</title>
+    <script src="../avalon.js"></script>
+    <script>
+        avalon.library("mkoa", {
+            $ready: function () {
+                avalon.log("控件已经构建完毕")
+            }
+        });
+
+        avalon.define({
+            $id: "test",
+            txt: "pager控件",
+            xx:function(){
+                alert(1)
+            }
+        });
+        require(["./pager/mkoa.pager"], function () {
+            avalon.log("组件加载回来了")
+        })
+    </script>
+</head>
+<body ms-controller="test">
+
+<p>{{txt}}</p>
+<mkoa:pager>
+    <div slot="list">
+        <ul ms-repeat="data">
+            <li ms-click="xx">{{el.name}}</li>
+        </ul>
+    </div>
+
+</mkoa:pager>
+<mkoa:pager>
+    <div slot="list">
+        <ul ms-repeat="data">
+            <li>{{el.name}}</li>
+        </ul>
+    </div>
+</mkoa:pager>
+</body>
+</html>
