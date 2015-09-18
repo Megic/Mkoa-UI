@@ -21,8 +21,8 @@ define(["avalon","css!./mkoa.pager.css"], function (avalon) {
         totalPages: 0, //@config {Number} 总页数,通过Math.ceil(vm.totalItems / vm.perPages)求得
         pages: [], //@config {Array} 要显示的页面组成的数字数组，如[1,2,3,4,5,6,7]
         ellipseText: "…", //@config {String} 省略的页数用什么文字表示
-        prevText: "<", //@config {String} “下一页”分页按钮上显示的文字
-        nextText: ">", //@config {String} “上一页”分页按钮上显示的文字
+        prevText: "上一页", //@config {String} “下一页”分页按钮上显示的文字
+        nextText: "下一页", //@config {String} “上一页”分页按钮上显示的文字
         firstPage: 0, //@config {Number} 当前可显示的最小页码，不能小于1
         lastPage: 0, //@config {Number} 当前可显示的最大页码，不能大于totalPages
         showFirstOmit: false,
@@ -33,13 +33,13 @@ define(["avalon","css!./mkoa.pager.css"], function (avalon) {
             /*
              {{list|html}}
              <div class="mkoa-pager">
-             <button  ms-click="changePage(currentPage-1)" ms-class="mkoa-pager-lock:currentPage==1">{{prevText}}</button>
+             <span  ms-click="changePage(currentPage-1)" class="mkoa-pager-button" ms-class="mkoa-pager-lock:currentPage==1">{{prevText}}</span>
              <span class="mkoa-pager-span" ms-if="firstPage>1" ms-click="changePage(1)">1</span>
              <span ms-if="firstPage>2">{{ellipseText}}</span>
              <span ms-repeat="pages" class="mkoa-pager-span" ms-click="changePage(el)" ms-class="mkoa-pager-curpage:el==currentPage" >{{el}}</span>
              <span ms-if="lastPage<totalPages-1" >{{ellipseText}}</span>
              <span class="mkoa-pager-span" ms-if="lastPage<totalPages" ms-click="changePage(totalPages)">{{totalPages}}</span>
-             <button  ms-click="changePage(currentPage+1)" ms-class="mkoa-pager-lock:currentPage==totalPages">{{nextText}}</button>
+             <span  ms-click="changePage(currentPage+1)" class="mkoa-pager-button" ms-class="mkoa-pager-lock:currentPage==totalPages">{{nextText}}</span>
              </div>
              */
         }),
@@ -104,15 +104,15 @@ define(["avalon","css!./mkoa.pager.css"], function (avalon) {
     }
     function getPages(vm) {
         var c = vm.currentPage, max = Math.ceil(vm.totalItems / vm.perPages), pages = [], s = vm.showPages,
-            left = c, right = c
+            left = c, right = c;
         //一共有p页，要显示s个页面
-        vm.totalPages = max
+        vm.totalPages = max;
         if (max <= s) {
             for (var i = 1; i <= max; i++) {
                 pages.push(i)
             }
         } else {
-            pages.push(c)
+            pages.push(c);
             while (true) {
                 if (pages.length >= s) {
                     break
@@ -132,7 +132,7 @@ define(["avalon","css!./mkoa.pager.css"], function (avalon) {
         vm.lastPage = pages[pages.length - 1] || 1
         vm.showFirstOmit = vm.firstPage > 2
         vm.showLastOmit = vm.lastPage < max - 1
-        return  pages//[0,1,2,3,4,5,6]
+        return  pages;//[0,1,2,3,4,5,6]
     }
 
 
