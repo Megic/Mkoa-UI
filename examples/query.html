@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html class="xx">
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>选择器</title>
     <script>
-        !function(){function a(){return/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)?!0:/(Android)/i.test(navigator.userAgent)?!0:!1}function e(a){var b="",c=document.documentElement.clientWidth;1600>c&&(b+=" lt1600"),1400>c&&(b+=" lt1400"),1200>c&&(b+=" lt1200"),1e3>c&&(b+=" lt1000"),960>c&&(b+=" lt960"),640>c&&(b+=" lt640"),500>c&&(b+=" lt500"),400>c&&(b+=" lt400"),a.className=d+b}var c,d,b=document.getElementsByTagName("html")[0];c=a()?"isMC":"isPC",b.className=b.className?b.className+" "+c:c,d=b.className,e(b),window.onresize=function(){e(b)}}();
-    </script>
+        !function(){function a(){return/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)?!0:/(Android)/i.test(navigator.userAgent)?!0:!1}function e(a){var b="",c=document.documentElement.clientWidth;1600>c&&(b+=" lt1600"),1400>c&&(b+=" lt1400"),1200>c&&(b+=" lt1200"),1e3>c&&(b+=" lt1000"),960>c&&(b+=" lt960"),640>c&&(b+=" lt640"),500>c&&(b+=" lt500"),400>c&&(b+=" lt400"),a.className=d+b}var c,d,b=document.getElementsByTagName("html")[0];c=a()?"isMC":"isPC",b.className=b.className?b.className+" "+c:c,d=b.className,e(b),window.onresize=function(){e(b)}}();    </script>
     <style>
         div {
-            background: red;}
+            background: red;
+        }
         .isMC div{
             background-color: #000;}
         .lt1200 div{
