@@ -1,0 +1,26 @@
+<div ms-controller="x1">
+ 不错
+    <input type="text" ms-duplex="txt" ms-duplex="form.nickname"/>{{form.nickname}}
+    <button ms-click="closeLayerx">关闭</button>
+    <p>
+        sdfsdf<br/>
+        sdf <br/>
+        sdf<br/>
+        sdf<br/>
+        sdf<br/>
+
+    </p>
+</div>
+<script>
+
+//    avalon.vmodels['%fvm%'].txt=1;
+    //avalon.vmodels['%layerVm%'].closeLayer();
+
+    avalon.define({
+        $id: "x1",
+        closeLayerx:function(){
+            avalon.vmodels['%layervm%'].closeLayer();
+        },
+        form:{nickname:""}
+    });
+</script>

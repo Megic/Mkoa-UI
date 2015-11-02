@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../avalon.js"></script>
+    <script>
+
+
+        var vm = avalon.define({
+            $id: "test",
+            curTpl:'2.html',
+            change:function(){
+                if(vm.curTpl!='2.html'){
+                    vm.curTpl='2.html';
+                }else{
+                    vm.curTpl='1.html';
+                }
+            }
+
+        });
+
+    </script>
+</head>
+<body ms-controller="test">
+<div ms-include-src="curTpl"></div>
+<button ms-click="change">改变页面</button>
+</body>

@@ -11,8 +11,7 @@
                 }
             });
 
-
-        require(["./mkoaPager/mkoaPager"], function () {
+        require(["./mkoaPagerFull/mkoaPagerFull"], function () {
             avalon.define({
                 $id: "test",
                 txt: "pager控件",
@@ -27,7 +26,15 @@
 <body ms-controller="test">
 
 <p>{{txt}}</p>
-<mkoa:pager  url="'data.json'">
+<mkoa:pager  url="'data.json'" searchurl="'data2.json'">
+    <div slot="$top" id="search">
+        <select ms-duplex="searchKey" class="f-fl">
+            <option value="id">ID</option>
+            <option value="name">姓名</option>
+        </select><input type="text" class="f-fl f-ml10" ms-duplex="searchValue" />
+        <button ms-click="search">搜索</button>
+        <button ms-if="searchOpen" ms-click="closeSearch">清空搜索</button>
+    </div>
     <div slot="$list">
         <ul ms-repeat="listData">
             <li ms-click="xx">{{el.title}}</li>

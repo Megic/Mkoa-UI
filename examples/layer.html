@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>弹出层演示</title>
+    <script src="../avalon.js"></script>
+    <script>
+            avalon.library("mkoa", {
+                $ready: function () {
+                    avalon.log("控件已经构建完毕")
+                }
+            });
+
+        require(["./mkoaLayer/mkoaLayer"], function () {
+            var xx=avalon.define({
+                $id: "test",
+                txt: "pager控件",
+                xx:function(){
+//                    alert(1)
+                }
+            });
+            avalon.scan();
+        })
+    </script>
+</head>
+<body ms-controller="test">
+
+<p>{{txt}}</p>
+<mkoa:layer $fvm="test" title="提示" width="400" height="200">
+<button slot="$tpl" ms-click="layerOpen('layer_open.html')">弹出对话框</button>
+</mkoa:layer>
+
+</body>
+</html>

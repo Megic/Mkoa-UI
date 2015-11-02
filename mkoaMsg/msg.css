@@ -1,0 +1,37 @@
+.mkoa-msg{
+ position: fixed;
+ top: 45%;
+ left: 0;
+ width: 100%;
+ text-align: center;
+ z-index: 999999999;}
+.mkoa-msg-bd{
+ -webkit-animation-fill-mode: both; animation-fill-mode: both; -webkit-animation-duration:.2s; animation-duration:.2s;
+ display: inline-block;
+ border: 1px solid #ccc;text-align: left;
+ font-size: 16px;
+ color: #666;max-width: 300px;
+ padding: 15px;
+ padding-left: 20px;
+ padding-right: 20px;
+ border-radius: 4px;
+ background-color: #fff; box-shadow: 1px 1px 10px rgba(0,0,0,.2);
+ -webkit-animation-name: bounceIn;animation-name: bounceIn;
+}
+.mkoa-msg-icon{
+ font-size: 26px;
+}
+.mkoa-msg-com{
+ margin-right: 10px;
+ font-weight: bold;
+}
+.mkoa-msg-success{
+ color: #1ea514;}
+.mkoa-msg-error{
+ color: #d61220;}
+.mkoa-msg-loading p{
+ font-size: 12px;
+ color: #ccc;}
+.mkoa-msg-loading .mkoa-msg-icon{
+ color: #666;
+ font-size: 36px;animation: 3.0s linear 0s normal none infinite rotate; -webkit-animation:3.0s linear 0s normal none infinite rotate;}

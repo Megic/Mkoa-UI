@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分页演示</title>
+    <script src="../avalon.js"></script>
+    <script>
+
+        require(["./mkoaAjax/mkoaAjax"], function ($a) {
+
+            $a.getJSON("data.json",{},function(data){
+            console.log(data)
+            })
+            $a.post("data.json",{xx:1,nn:2},function(data){
+                console.log(data)
+            })
+        })
+    </script>
+</head>
+<body>
+
+</body>
+</html>

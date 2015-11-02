@@ -1,0 +1,10 @@
+<div ms-controller="x1">
+页面1
+    <input type="text" ms-duplex="form.nickname"/>{{form.nickname}}
+</div>
+<script>
+    avalon.define({
+        $id: "x1",
+        form:{nickname:""}
+    });
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>弹出层演示</title>
+    <style>
+
+    </style>
+    <script src="../avalon.js"></script>
+    <script>
+        avalon.library("mkoa", {
+            $ready: function () {
+                avalon.log("控件已经构建完毕")
+            }
+        });
+
+        require(["./mkoaUploader/mkoaUploader"], function () {
+            var xx=avalon.define({
+                $id: "test"
+            });
+            avalon.scan();
+        })
+    </script>
+</head>
+<body ms-controller="test">
+<mkoa:uploader><div slot="$tpl">
+        <button class="upload-button">22</button>
+    <div ms-repeat="files">
+        {{el.name}}:{{el.state}}
+    </div>
+</div></mkoa:uploader>
+
+</body>
+</html>

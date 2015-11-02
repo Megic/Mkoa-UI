@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>弹出层演示</title>
+    <style>
+
+    </style>
+    <script src="../avalon.js"></script>
+    <script>
+            avalon.library("mkoa", {
+                $ready: function () {
+                    avalon.log("控件已经构建完毕")
+                }
+            });
+
+        require(["./mkoaMsg/mkoaMsg"], function ($msg) {
+            var xx=avalon.define({
+                $id: "test",
+                success:function(){
+                    $msg.success('提交成功');
+                },
+                error:function(){
+                    $msg.error('失败');
+                },
+                loading:function(){
+                    $msg.loading();
+                },
+                closeLoading:function(){
+                    $msg.closeLoading();
+                }
+            });
+            avalon.scan();
+        })
+    </script>
+</head>
+<body ms-controller="test">
+<button ms-click="success">成功</button>
+<button ms-click="error">失败</button>
+<button ms-click="loading">loading</button>
+<button ms-click="closeLoading">closeLoading</button>
+</body>
+</html>
