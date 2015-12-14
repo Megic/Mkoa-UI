@@ -52,7 +52,7 @@ define(["avalon","../mkoaBase/base","../draggable/avalon.draggable","css!./layer
             //关闭弹出层打开VM弹出层
             vm.layerOpen=function(tpl){
                 vm.open=true;
-                vm.layerTpl=tpl;
+                if(tpl)vm.layerTpl=base.getUrl(tpl);
             };
             //模板修改
             vm.changeTpl=function(tmpl){

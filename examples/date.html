@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分页演示</title>
+    <script src="../avalon.js"></script>
+
+</head>
+<body ms-controller="test">
+<input type="text" id="he"/><input type="text" id="he2"/>
+<p>{{txt}}</p>
+
+<!--<mkoa:pager ms-data-pager-url="'22'">-->
+    <!--<div slot="list">-->
+        <!--<ul ms-repeat="listData">-->
+            <!--<li>{{el.name}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</mkoa:pager>-->
+<script>
+    avalon.library("mkoa", {
+        $ready: function () {
+            avalon.log("控件已经构建完毕")
+        }
+    });
+
+
+    require(["./mkoaDate/date"], function (laydate) {
+        laydate.run({
+            elem: '#he'
+        },'molv');
+        laydate.run({
+            elem: '#he2'
+        });
+        avalon.define({
+            $id: "test",
+            txt: "pager控件",
+            choosex:function(){
+                alert(1)
+            }
+        });
+        avalon.scan()
+    })
+</script>
+</body>
+</html>
