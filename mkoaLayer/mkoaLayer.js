@@ -1,12 +1,7 @@
 /**
  * Created by Administrator on 2015/9/16 0016.
  */
-define(["avalon","../draggable/avalon.draggable","css!./layer.css"], function (avalon) {
-    function heredoc(fn) {
-        return fn.toString()
-            .replace(/^[^\/]+\/\*!?\s?/, '')
-            .replace(/\*\/[^\/]+$/, '')
-    }
+define(["avalon","../mkoaBase/base","../draggable/avalon.draggable","css!./layer.css"], function (avalon,base) {
     avalon.component("mkoa:layer",{
         url:"",//数据获取地址
         $tpl:"",
@@ -19,6 +14,7 @@ define(["avalon","../draggable/avalon.draggable","css!./layer.css"], function (a
         changeTpl:avalon.noop,
         layerOpen:avalon.noop,
         closeLayer:avalon.noop,
+        openUrl:avalon.noop,
         draggable: {
         handle: function(e){
             var el = e.target;
@@ -31,7 +27,7 @@ define(["avalon","../draggable/avalon.draggable","css!./layer.css"], function (a
         $skipArray:["draggable"]
     },
     //插件模板
-        $template: heredoc(function (vm) {
+        $template: base.heredoc(function (vm) {
             /*
             {{$tpl|html}}
              <div ms-if="open" class="layui-layer-shade layui-anim layui-anim-05" >&nbsp;</div>
@@ -43,6 +39,12 @@ define(["avalon","../draggable/avalon.draggable","css!./layer.css"], function (a
              */
         }),
         $init:function(vm){
+            vm.layerTpl=base.getUrl(vm.layerTpl);
+            //切换模板
+            vm.openUrl=function(url,title){
+                if(url)vm.layerTpl=base.getUrl(url);
+                if(title)vm.title=title;
+            };
             //关闭弹出层
             vm.closeLayer=function(){
                 vm.open=false;

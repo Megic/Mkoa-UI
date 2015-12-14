@@ -1,21 +1,7 @@
 /**
  * Created by Administrator on 2015/9/16 0016.
  */
-define(["avalon","../mkoaAjax/mkoaAjax","css!./mkoa.pagerFull.css"], function (avalon,$a) {
-    function heredoc(fn) {
-        return fn.toString()
-            .replace(/^[^\/]+\/\*!?\s?/, '')
-            .replace(/\*\/[^\/]+$/, '')
-    }
-    var getUrl=function(url){
-        var $HOST='http://'+window.location.host;
-        if((url.indexOf('http://')==-1)&&(url.indexOf('../')==-1)&&(url.indexOf('./')==-1)){
-            if(url.indexOf('/')!=0)$HOST=$HOST+'/';
-            return $HOST+url;
-        }else{
-            return url;
-        }
-    };
+define(["avalon","../mkoaAjax/mkoaAjax","../mkoaBase/base","css!./mkoa.pagerFull.css"], function (avalon,$a,base) {
     avalon.component("mkoa:pager", {
         url:"",//数据获取地址
         searchurl:"",//搜索功能地址
@@ -23,6 +9,9 @@ define(["avalon","../mkoaAjax/mkoaAjax","css!./mkoa.pagerFull.css"], function (a
         $top:"",
         listData:[],
         searchKey:'id',
+        searchvm:'',
+        searchform:'searchForm',
+        $defaltData:{},
         searchValue:'',
         perPages: 2, //@config {Number} 每页包含多少条目
         showPages: 10, //@config {Number} 中间部分一共要显示多少页(如果两边出现省略号,即它们之间的页数)
@@ -43,7 +32,7 @@ define(["avalon","../mkoaAjax/mkoaAjax","css!./mkoa.pagerFull.css"], function (a
         changePage:avalon.noop,
         closeSearch:avalon.noop,
         //插件模板
-        $template: heredoc(function (vm) {
+        $template: base.heredoc(function (vm) {
             /*
              {{$top|html}}{{$list|html}}
              <p class="mkoa-pager-empty" ms-if="!totalItems">{{empty}}</p>
@@ -58,17 +47,26 @@ define(["avalon","../mkoaAjax/mkoaAjax","css!./mkoa.pagerFull.css"], function (a
              </div>
              */
         }),
+        $ready:function(vm){
+            //备份默认搜索数据
+            if(vm.searchvm!=''){
+                avalon.mix(true,vm.$defaltData,avalon.vmodels[vm.searchvm][vm.searchform].$model);
+            }
+        },
         $init:function(vm){
+
             //修正url
-            vm.$watch("url", function (){
-                vm.url=getUrl(vm.url);
-            });
-            vm.$watch("searchurl", function (){
-                vm.searchurl=getUrl(vm.searchurl);
-            });
+            vm.url=base.getUrl(vm.url);
+            vm.searchurl=base.getUrl(vm.searchurl);
+            //vm.$watch("url", function (){
+            //    vm.url=getUrl(vm.url);
+            //});
+            //vm.$watch("searchurl", function (){
+            //    vm.searchurl=getUrl(vm.searchurl);
+            //});
             //搜索功能
             vm.search=function(){
-                if(vm.searchurl&&vm.searchValue) {
+                if((vm.searchurl&&vm.searchValue)||vm.searchvm!='') {
                     if (!vm.searchOpen)vm.searchOpen = true;
                     if (vm.currentPage != 1) {
                         vm.currentPage = 1;
@@ -83,6 +81,7 @@ define(["avalon","../mkoaAjax/mkoaAjax","css!./mkoa.pagerFull.css"], function (a
             vm.closeSearch=function(){
                 vm.searchOpen=false;
                 vm.searchValue='';
+                if(vm.searchvm!='')avalon.vmodels[vm.searchvm][vm.searchform]=vm.$defaltData;
                 if(vm.currentPage!=1){
                     vm.currentPage=1;
                 }else{
@@ -112,8 +111,13 @@ define(["avalon","../mkoaAjax/mkoaAjax","css!./mkoa.pagerFull.css"], function (a
                         }
                     });
                 }else{//搜索事件
-                    option['searchKey']=vm.searchKey;//搜索字段
-                    option['searchValue']=vm.searchValue;//搜索内容
+                    if(vm.searchvm!=''){//自定义搜索字段
+                       if(avalon.vmodels[vm.searchvm][vm.searchform].$model)option=avalon.mix(option,avalon.vmodels[vm.searchvm][vm.searchform].$model)
+                    }else{
+                        option['searchKey']=vm.searchKey;//搜索字段
+                        option['searchValue']=vm.searchValue;//搜索内容
+                    }
+
                     $a.getJSON(vm.searchurl,option,function(data){//获取搜索列表数据
                         if(!data.error){
                             vm.totalItems=data.data.count;

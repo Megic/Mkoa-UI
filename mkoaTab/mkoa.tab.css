@@ -1,0 +1,16 @@
+.koa-tab{
+    line-height: 45px;
+    height: 45px;
+    position: relative;
+    border-bottom: 1px solid #e1e1e1;
+}
+.koa-tab-span{
+    display: inline-block;
+    padding-left: 15px;
+    padding-right: 15px;cursor: pointer;
+    color: #444;}
+.koa-tab-span.on{
+    background-color: #eaeef4;
+    border: 1px solid #e1e1e1;
+    border-bottom: none;
+    line-height: 44px;}

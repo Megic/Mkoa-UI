@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分页演示</title>
+    <script src="../avalon.js"></script>
+    <script>
+            avalon.library("mkoa", {
+                $ready: function () {
+                    avalon.log("控件已经构建完毕")
+                }
+            });
+
+
+        require(["./mkoaTab/mkoaTab"], function () {
+            avalon.define({
+                $id: "test",
+                txt: "pager控件",
+                valid:3,
+                xx:function(){
+//                    alert(1)
+                }
+            });
+            avalon.scan()
+        })
+    </script>
+</head>
+<body ms-controller="test">
+
+<p>{{txt}}</p>
+
+<mkoa:tab  tabstr="最新申请单|查询申请单" cur="0" tabevent="click">
+    <div slot="$tpl">
+        <div class="koa-tab-box" ms-if="cur==0">
+1
+        </div>
+        <div class="koa-tab-box" ms-if="cur==1">
+2
+        </div>
+    </div>
+</mkoa:tab>
+
+<!--<mkoa:pager ms-data-pager-url="'22'">-->
+    <!--<div slot="list">-->
+        <!--<ul ms-repeat="listData">-->
+            <!--<li>{{el.name}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</mkoa:pager>-->
+</body>
+</html>

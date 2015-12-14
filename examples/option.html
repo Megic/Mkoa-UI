@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>分页演示</title>
+    <script src="../avalon.js"></script>
+    <script>
+            avalon.library("mkoa", {
+                $ready: function () {
+                    avalon.log("控件已经构建完毕")
+                }
+            });
+
+
+        require(["./mkoaOption/mkoaOption"], function () {
+            avalon.define({
+                $id: "test",
+                txt: "pager控件",
+                valid:3,
+                form:{val:1},
+                xx:function(){
+//                    alert(1)
+                }
+            });
+            avalon.scan()
+        })
+    </script>
+</head>
+<body ms-controller="test">
+
+<p>{{valid}}</p>
+
+<mkoa:option  url="./data.json" model="common:22" field="title">
+    <select slot="$select" ms-duplex="form.val"><option ms-repeat="list" ms-attr-value="el.id">{{el.title}}</option></select>
+</mkoa:option>
+
+<mkoa:option  url="./data.json" model="common:22" field="title" watchvm="test" watchdata="form.val" >
+    <select slot="$select" ms-duplex="valid"><option ms-repeat="list" ms-attr-value="el.id">{{el.title}}</option></select>
+</mkoa:option>
+
+<!--<mkoa:pager ms-data-pager-url="'22'">-->
+    <!--<div slot="list">-->
+        <!--<ul ms-repeat="listData">-->
+            <!--<li>{{el.name}}</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--</mkoa:pager>-->
+</body>
+</html>

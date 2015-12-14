@@ -35,11 +35,11 @@ define(["avalon","css!../mkoaBase/base.css","css!./msg.css"], function (avalon) 
                 break;
         }
         $msg.closeLoading();
-        var div=avalon.parseHTML('<div id="mkoaMsg_loading" class="mkoa-msg"><div class="mkoa-msg-loading"><i class="mkoa-icon mkoa-msg-icon">'+icon+'</i><p>'+text+'</p></div></div>');
+        var div=avalon.parseHTML('<div id="mkoaMsg_mark"><div id="mkoaMsg_loading" class="mkoa-msg"><div class="mkoa-msg-loading"><i class="mkoa-icon mkoa-msg-icon">'+icon+'</i><p>'+text+'</p></div></div></div>');
         body.appendChild(div);
     };
     $msg.closeLoading=function(){
-        var div=document.getElementById('mkoaMsg_loading');
+        var div=document.getElementById('mkoaMsg_mark');
         if(div)body.removeChild(div);
     };
     return $msg;
